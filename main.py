@@ -27,13 +27,14 @@ class HeroStats:
     """
      Classe HeroStats
         dataclass attributs de type statistique force, dexterite, constitution, intelligence, sagesse, charisme
+        avec des valeurs initiales un numéro aléatoire de 1 a 20
     """
-    force: int
-    dexterite: int
-    constitution: int
-    intelligence: int
-    sagesse: int
-    charisme: int
+    force: int = random.randint(1, 20)
+    dexterite: int = random.randint(1, 20)
+    constitution: int = random.randint(1, 20)
+    intelligence: int = random.randint(1, 20)
+    sagesse: int = random.randint(1, 20)
+    charisme: int = random.randint(1, 20)
 
 
 class Hero:
@@ -43,13 +44,13 @@ class Hero:
         méthodes attaquer, recois_dommages, est_vivant
     """
     def __init__(self, nom):
+        # Lancer les dés pour obtenir les pointsVie, force d'attaque et la force de défense
         self.pointsVie = rouler_de(2, 10)       # "2d10"
         self.force_attaque = rouler_de(1, 6)    # "1d6"
         self.force_defense = rouler_de(1, 6)    # "1d6"
         self.nom = nom
         # Stats
-        self.stats = HeroStats(random.randint(1, 20), random.randint(1, 20), random.randint(1, 20),
-                               random.randint(1, 20), random.randint(1, 20), random.randint(1, 20))
+        self.stats = HeroStats()
 
     def attaque(self):
         self.pointsVie = rouler_de(1, 6) + self.force_attaque
